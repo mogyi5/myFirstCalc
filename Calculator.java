@@ -120,36 +120,35 @@ public class Calculator extends JFrame implements ActionListener {
 			}
 		}
 
-		if (temp2 != 0) {
-			if (e.getSource() == b_plus) {
+		
+			if (e.getSource() == b_plus && temp2 != -1) {
 
 				temp1 = textScan.nextDouble();
 				tf.setText(String.format("%8.2f", temp1));
 				temp3 = 1;
-
-			} else if (e.getSource() == b_minus) {
+				temp2 = -1;
+			} else if (e.getSource() == b_minus  && temp2 != -1) {
 
 				temp1 = textScan.nextDouble();
 				tf.setText(String.format("%8.2f", temp1));
 				temp3 = 2;
-
-			} else if (e.getSource() == b_mult) {
+				temp2 = -1;
+			} else if (e.getSource() == b_mult  && temp2 != -1) {
 
 				temp1 = textScan.nextDouble();
 				tf.setText(String.format("%8.2f", temp1));
 				temp3 = 3;
-
-			} else if (e.getSource() == b_div) {
+				temp2 = -1;
+			} else if (e.getSource() == b_div  && temp2 != -1) {
 
 				temp1 = textScan.nextDouble();
 				tf.setText(String.format("%8.2f", temp1));
 				temp3 = 4;
-
+				temp2 = -1;
 			}
-			temp2 = 0;
-		}
 
-		if (temp2 != 0 && e.getSource() == b_eq) {
+
+		if (temp2 != -1 && e.getSource() == b_eq) {
 
 			if (temp3 == 1) {
 				temp0 = textScan.nextDouble();
@@ -169,20 +168,22 @@ public class Calculator extends JFrame implements ActionListener {
 				tf.setText(String.format("%8.2f", result));
 			} else {
 			}
-			temp2 = 0;
+			temp2 = -1;
 			temp3 = 0;
 
 		}
 		textScan.close();
+		System.out.println(temp2);
+		System.out.println(temp3);
 	}
 
 	public void makingOrder(JTextField field, String string, String tfText) {
-		if (temp2 != 0 && !field.getText().equals("0")) {
-			field.setText(tfText + string);
+		if (temp2 != -1 && !field.getText().equals("0")) {
+			field.setText(tfText + string); 
 		} else {
 			field.setText(string);
 		}
-		temp2 = -1;
+		temp2 = 0;
 	}
 
 	public void makeButton(JButton button, JPanel panel, Font font) {
